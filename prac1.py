@@ -6,8 +6,11 @@ tone_analyzer = ToneAnalyzerV3(
     iam_apikey='KRnaLFSHyWwMX4BQ87--BxYDMdSoraFPj-noSvdEFHW7',
     url='https://gateway.watsonplatform.net/tone-analyzer/api'
 )
-text = "die in hell"
-
+text ="die in hell"
+'''
+ ['You are bad in this','You are useless','You are retarded','Just kill yourself',"You are no good", "You're doing a good job","You should work hard","Your code looks great","The project could be more impressive than this",\
+"Chatting is very fun",	'The weather is pretty good today',	'How are you?', "Don't worry, you'll do better next time", "I like your new dress", "I hope you die"]
+'''
 
 
 
@@ -89,12 +92,19 @@ emotional_range_sdbad =.111930793
 # predicting bullying
 
 def bully(angr, dsgst, sdns, fer):
-    if ((anger_mnbad - anger_sdbad) <= angr <= (anger_mnbad + anger_sdbad)) and \
-    ((disgust_mnbad - disgust_sdbad) <= dsgst <= (disgust_mnbad + disgust_sdbad)) and\
-    ((sadness_mnbad - sadness_sdbad) <= sdns <= (sadness_mnbad + sadness_sdbad)) and\
-    ((fear_mnbad - fear_sdbad) <= fer <= (fear_mnbad + fear_sdbad)):
+    if ((anger_mnbad - anger_sdbad) <= angr <= (anger_mnbad + anger_sdbad)) and ((disgust_mnbad - disgust_sdbad) <= dsgst <= (disgust_mnbad + disgust_sdbad)) and ((sadness_mnbad - sadness_sdbad) <= sdns <= (sadness_mnbad + sadness_sdbad)) and ((fear_mnbad - fear_sdbad) <= fer <= (fear_mnbad + fear_sdbad)):
         return True
     else:
         return False
 
+
 print(bully(anger, disgust, sadness, fear))
+
+def text_edit(str):
+    if ((bully(anger, disgust, sadness, fear))== True):
+        str = "*" * (len(str))
+        return str
+    else:
+        return str
+
+print(text_edit(text))
